@@ -1,11 +1,11 @@
 {% load static %}
 <header class="header header--loggedIn">
     <div class="container">
-        <a href="{% url 'home' %}" class="header__logo">
+        <a href="{% url 'forum:home' %}" class="header__logo">
             <img src="{% static 'images/favicon.ico' %}" />
             <h1>Netfarm</h1>
         </a>
-        <form class="header__search" method="GET" action="{% url 'home' %}">
+        <form class="header__search" method="GET" action="{% url 'forum:home' %}">
             <label>
                 <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
                     <title>search</title>
@@ -22,7 +22,7 @@
             <!-- Logged In -->
             {% if request.user.is_authenticated %}
             <div class="header__user">
-                <a href="{% url 'update-user' %}">
+                <a href="{% url 'forum:update-user' %}">
                     <div class="avatar avatar--medium active">
                         <img src="{{request.user.avatar.url}}" />
                     </div>
@@ -38,14 +38,14 @@
             {% else %}
 
             <!-- Not Logged In -->
-            <a href="{% url 'login' %}">
+            <a href="{% url 'forum:login' %}">
                 <img src="{% static 'images/avatar.svg' %}" />
                 <p>Login</p>
             </a>
             {% endif %}
 
             <div class="dropdown-menu">
-                <a href="{% url 'update-user' %}" class="dropdown-link"><svg version="1.1"
+                <a href="{% url 'forum:update-user' %}" class="dropdown-link"><svg version="1.1"
                         xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
                         <title>tools</title>
                         <path
@@ -54,7 +54,7 @@
                     </svg>
                     Settings
                 </a>
-                <a href="{% url 'logout' %}" class="dropdown-link"><svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+                <a href="{% url 'forum:logout' %}" class="dropdown-link"><svg version="1.1" xmlns="http://www.w3.org/2000/svg"
                         width="32" height="32" viewBox="0 0 32 32">
                         <title>sign-out</title>
                         <path
