@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'weather.apps.WeatherConfig',
     'news.apps.NewsConfig',
+    'django.contrib.postgres',
 ]
 
 AUTH_USER_MODEL = 'forum.User'
@@ -85,8 +86,10 @@ WSGI_APPLICATION = 'netfarm.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'netfarm',
+        'USER': 'brian',
+        'PASSWORD': 'b',
     }
 }
 
