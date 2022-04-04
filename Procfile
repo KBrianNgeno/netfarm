@@ -1,1 +1,1 @@
-web: gunicorn Netfarm.wsgi --log-file -
+web: gunicorn netfarm.wsgi --log-file -
