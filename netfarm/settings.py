@@ -38,10 +38,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'forum.apps.ForumConfig',
-   
     'rest_framework',
     'corsheaders',
     'weather.apps.WeatherConfig',
+    'news.apps.NewsConfig',
 ]
 
 AUTH_USER_MODEL = 'forum.User'

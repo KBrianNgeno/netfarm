@@ -55,7 +55,23 @@
   <body>
     <div>
       <header class="container header">
-        <h1>Netfarm Wether Forecast</h1>
+        {% comment %} <a href="{{request.META.HTTP_REFERER}}">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+            <title>arrow-left</title>
+            <path
+              d="M13.723 2.286l-13.723 13.714 13.719 13.714 1.616-1.611-10.96-10.96h27.625v-2.286h-27.625l10.965-10.965-1.616-1.607z">
+            </path>
+          </svg>
+        </a> {% endcomment %}
+        <a href="{{request.META.HTTP_REFERER}}">
+          <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+            <title>arrow-left</title>
+            <path
+              d="M13.723 2.286l-13.723 13.714 13.719 13.714 1.616-1.611-10.96-10.96h27.625v-2.286h-27.625l10.965-10.965-1.616-1.607z">
+            </path>
+          </svg>
+        </a>
+        <h1>Netfarm Weather Forecast</h1>
       </header>
       <nav class="container header">
         <div class="row align-items-center py-2">
@@ -69,7 +85,7 @@
               placeholder="latitude"
               aria-label="latitude"
               aria-describedby="basic-addon1"
-              value="-1.10"
+              value="-1.29"
             />
           </div>
           <div class="input-group col-sm">
@@ -82,7 +98,7 @@
               placeholder="longitude"
               aria-label="longitude"
               aria-describedby="basic-addon1"
-              value="37.02"
+              value="36.82"
             />
           </div>
         </div>
