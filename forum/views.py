@@ -8,9 +8,9 @@ from .models import Room, Topic, Message, User
 from .forms import RoomForm, UserForm, MyUserCreationForm
 
 def loginUser(request):
-    page = 'login'
+    page = 'forum:login'
     if request.user.is_authenticated:
-        return redirect('home')
+        return redirect('forum:home')
 
     if request.method == 'POST':
         email = request.POST.get('email').lower()
@@ -25,7 +25,7 @@ def loginUser(request):
 
         if user is not None:
             login(request, user)
-            return redirect('home')
+            return redirect('forum:home')
         else:
             messages.error(request, 'Username OR password does not exit')
 
@@ -35,7 +35,7 @@ def loginUser(request):
 
 def logoutUser(request):
     logout(request)
-    return redirect('home')
+    return redirect('forum:home')
 
 
 def registerUser(request):
@@ -48,7 +48,7 @@ def registerUser(request):
             user.username = user.username.lower()
             user.save()
             login(request, user)
-            return redirect('home')
+            return redirect('forum:home')
         else:
             messages.error(request, 'An error occurred during registration')
 
@@ -88,7 +88,7 @@ def room(request, pk):
             body=request.POST.get('body')
         )
         room.participants.add(request.user)
-        return redirect('room', pk=room.id)
+        return redirect('forum:room', pk=room.id)
 
     context = {'room': room, 'room_messages': room_messages,
                'participants': participants,'rules': rules}
@@ -105,7 +105,7 @@ def userProfile(request, pk):
     return render(request, 'forum/profile.html', context)
 
 
-@login_required(login_url='login')
+@login_required(login_url='forum:login')
 def createRoom(request):
     form = RoomForm()
     topics = Topic.objects.all()
@@ -119,13 +119,13 @@ def createRoom(request):
             name=request.POST.get('name'),
             description=request.POST.get('description'),
         )
-        return redirect('home')
+        return redirect('forum:home')
 
     context = {'form': form, 'topics': topics}
     return render(request, 'forum/room_form.html', context)
 
 
-@login_required(login_url='login')
+@login_required(login_url='forum:login')
 def updateRoom(request, pk):
     room = Room.objects.get(id=pk)
     form = RoomForm(instance=room)
@@ -140,13 +140,13 @@ def updateRoom(request, pk):
         room.topic = topic
         room.description = request.POST.get('description')
         room.save()
-        return redirect('home')
+        return redirect('forum:home')
 
     context = {'form': form, 'topics': topics, 'room': room}
     return render(request, 'forum/room_form.html', context)
 
 
-@login_required(login_url='login')
+@login_required(login_url='forum:login')
 def deleteRoom(request, pk):
     room = Room.objects.get(id=pk)
 
@@ -155,11 +155,11 @@ def deleteRoom(request, pk):
 
     if request.method == 'POST':
         room.delete()
-        return redirect('home')
+        return redirect('forum:home')
     return render(request, 'forum/delete.html', {'obj': room})
 
 
-@login_required(login_url='login')
+@login_required(login_url='forum:login')
 def deleteMessage(request, pk):
     message = Message.objects.get(id=pk)
 
@@ -168,11 +168,11 @@ def deleteMessage(request, pk):
 
     if request.method == 'POST':
         message.delete()
-        return redirect('home')
+        return redirect('forum:home')
     return render(request, 'forum/delete.html', {'obj': message})
 
 
-@login_required(login_url='login')
+@login_required(login_url='forum:login')
 def updateUser(request):
     user = request.user
     form = UserForm(instance=user)
@@ -181,7 +181,7 @@ def updateUser(request):
         form = UserForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('user-profile', pk=user.id)
+            return redirect('forum:user-profile', pk=user.id)
 
     return render(request, 'forum/update-user.html', {'form': form})
 
