@@ -8,12 +8,13 @@ from .models import Room, Topic, Message, User
 from .forms import RoomForm, UserForm, MyUserCreationForm
 
 def loginUser(request):
-    page = 'forum:login'
+    page = 'login'
     if request.user.is_authenticated:
         return redirect('forum:home')
 
     if request.method == 'POST':
         email = request.POST.get('email').lower()
+        # email = request.POST.get('email')
         password = request.POST.get('password')
 
         try:
@@ -105,7 +106,7 @@ def userProfile(request, pk):
     return render(request, 'forum/profile.html', context)
 
 
-@login_required(login_url='forum:login')
+@login_required(login_url='login')
 def createRoom(request):
     form = RoomForm()
     topics = Topic.objects.all()
@@ -125,7 +126,7 @@ def createRoom(request):
     return render(request, 'forum/room_form.html', context)
 
 
-@login_required(login_url='forum:login')
+@login_required(login_url='login')
 def updateRoom(request, pk):
     room = Room.objects.get(id=pk)
     form = RoomForm(instance=room)
@@ -146,7 +147,7 @@ def updateRoom(request, pk):
     return render(request, 'forum/room_form.html', context)
 
 
-@login_required(login_url='forum:login')
+@login_required(login_url='login')
 def deleteRoom(request, pk):
     room = Room.objects.get(id=pk)
 
@@ -159,7 +160,7 @@ def deleteRoom(request, pk):
     return render(request, 'forum/delete.html', {'obj': room})
 
 
-@login_required(login_url='forum:login')
+@login_required(login_url='login')
 def deleteMessage(request, pk):
     message = Message.objects.get(id=pk)
 
@@ -172,7 +173,7 @@ def deleteMessage(request, pk):
     return render(request, 'forum/delete.html', {'obj': message})
 
 
-@login_required(login_url='forum:login')
+@login_required(login_url='login')
 def updateUser(request):
     user = request.user
     form = UserForm(instance=user)
@@ -181,7 +182,7 @@ def updateUser(request):
         form = UserForm(request.POST, request.FILES, instance=user)
         if form.is_valid():
             form.save()
-            return redirect('forum:user-profile', pk=user.id)
+            return redirect('user-profile', pk=user.id)
 
     return render(request, 'forum/update-user.html', {'form': form})
 
