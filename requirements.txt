@@ -5,6 +5,7 @@ charset-normalizer==2.0.12
 Django==3.2.7
 django-cors-headers==3.8.0
 djangorestframework==3.12.4
+gunicorn==20.1.0
 idna==3.3
 newsapi==0.1.1
 newsapi-python==0.2.6
