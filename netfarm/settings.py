@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'weather.apps.WeatherConfig',
     'news.apps.NewsConfig',
-    'django.contrib.postgres',
+    # 'django.contrib.postgres',
 ]
 
 AUTH_USER_MODEL = 'forum.User'
