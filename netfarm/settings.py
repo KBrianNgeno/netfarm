@@ -89,12 +89,20 @@ WSGI_APPLICATION = 'netfarm.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'netfarm',
-        'USER': 'brian',
-        'PASSWORD': 'b',
+        'ENGINE': 'django.db.backends.sqlite3', 
+        'NAME': 'sqlite3.db',                      
+
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'netfarm',
+#         'USER': 'brian',
+#         'PASSWORD': 'b',
+#     }
+# }
 
 
 # Password validation
